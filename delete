@@ -1,1 +1,1 @@
-kubectl delete -k ./
+kubectl delete -k ./     #deletes the app
