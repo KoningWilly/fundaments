@@ -21,7 +21,7 @@ metadata:
   labels:
     app: wordpress
   annotations:
-    volume.beta.kubernetes.io/storage-class: px
+    volume.beta.kubernetes.io/storage-class: px-db
 spec:
   accessModes:
     - ReadWriteOnce
