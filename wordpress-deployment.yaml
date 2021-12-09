@@ -7,10 +7,12 @@ metadata:
 spec:
   ports:
     - port: 80
+      targetPort: 80
+      nodePort: 30331
   selector:
     app: wordpress
     tier: frontend
-  type: LoadBalancer
+  type: NodePort
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -19,7 +21,11 @@ metadata:
   labels:
     app: wordpress
   annotations:
+<<<<<<< HEAD
     volume.beta.kubernetes.io/storage-class: px-replicated
+=======
+    volume.beta.kubernetes.io/storage-class: px-db
+>>>>>>> ebad7a3853cc50b76258a76f4a7492c4635dd78d
 spec:
   accessModes:
     - ReadWriteOnce
