@@ -19,7 +19,7 @@ metadata:
   labels:
     app: wordpress
   annotations: 
-    volume.beta.kubernetes.io/storage-class: longhorn
+    volume.beta.kubernetes.io/storageClassName: longhorn
 spec:
   accessModes:
     - ReadWriteOnce
