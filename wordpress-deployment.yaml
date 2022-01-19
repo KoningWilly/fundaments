@@ -68,3 +68,5 @@ spec:
       - name: wordpress-persistent-storage
         persistentVolumeClaim:
           claimName: wp-pv-claim
+      nodeSelector:
+        node: 4
