@@ -22,7 +22,7 @@ metadata:
     volume.beta.kubernetes.io/storageClassName: longhorn
 spec:
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
   resources:
     requests:
       storage: 5Gi
