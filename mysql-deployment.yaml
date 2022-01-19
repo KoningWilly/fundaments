@@ -67,4 +67,4 @@ spec:
         persistentVolumeClaim:
           claimName: mysql-pv-claim
       nodeSelector:
-        node: 4
+        node: 5
