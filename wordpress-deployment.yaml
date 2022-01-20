@@ -69,4 +69,4 @@ spec:
         persistentVolumeClaim:
           claimName: wp-pv-claim
       nodeSelector:
-        node: 4
+        kubernetes.io/hostname: node4-virtual-machine
