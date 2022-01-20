@@ -68,24 +68,12 @@ spec:
         persistentVolumeClaim:
           claimName: wp-pv-claim
           
-apiVersion: apps/v1
-kind: ReplicaSet
+apiVersion: policy/v1
+kind: PodDisruptionBudget
 metadata:
-  name: wordpressreplicas
-  labels:
-    app: wordpress
-    tier: frontend
+  name: wordpress
 spec:
-  # modify replicas according to your case
-  replicas: 2
+  minAvailable: 1
   selector:
     matchLabels:
-      tier: frontend
-  template:
-    metadata:
-      labels:
-        tier: frontend
-    spec:
-      containers:
-      - name: wordpress
-        image: wordpress:4.8-apache         
+      app: wordpress
