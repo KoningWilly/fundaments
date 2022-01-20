@@ -34,7 +34,6 @@ metadata:
   labels:
     app: wordpress
 spec:
-  replicas: 2
   selector:
     matchLabels:
       app: wordpress
@@ -66,5 +65,3 @@ spec:
       - name: mysql-persistent-storage
         persistentVolumeClaim:
           claimName: mysql-pv-claim
-      nodeSelector:
-        kubernetes.io/hostname: node5-virtual-machine
