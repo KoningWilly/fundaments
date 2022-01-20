@@ -67,4 +67,4 @@ spec:
         persistentVolumeClaim:
           claimName: mysql-pv-claim
       nodeSelector:
-        node: 5
+        kubernetes.io/hostname: node5-virtual-machine
