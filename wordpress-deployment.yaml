@@ -64,7 +64,7 @@ spec:
         - name: wordpress-persistent-storage
           mountPath: /var/www/html
       nodeSelector: 
-          kubernetes.io/hostname: node5-virtual-machine
+          kubernetes.io/hostname: node4-virtual-machine
       volumes:
       - name: wordpress-persistent-storage
         persistentVolumeClaim:
