@@ -63,17 +63,9 @@ spec:
         volumeMounts:
         - name: wordpress-persistent-storage
           mountPath: /var/www/html
+      nodeSelector: 
+          kubernetes.io/hostname: node5-virtual-machine
       volumes:
       - name: wordpress-persistent-storage
         persistentVolumeClaim:
           claimName: wp-pv-claim
-          
-apiVersion: policy/v1
-kind: PodDisruptionBudget
-metadata:
-  name: wordpress
-spec:
-  minAvailable: 1
-  selector:
-    matchLabels:
-      app: wordpress
