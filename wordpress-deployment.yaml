@@ -67,3 +67,25 @@ spec:
       - name: wordpress-persistent-storage
         persistentVolumeClaim:
           claimName: wp-pv-claim
+          
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: wordpressreplicas
+  labels:
+    app: wordpress
+    tier: frontend
+spec:
+  # modify replicas according to your case
+  replicas: 2
+  selector:
+    matchLabels:
+      tier: frontend
+  template:
+    metadata:
+      labels:
+        tier: frontend
+    spec:
+      containers:
+      - name: wordpress
+        image: wordpress:4.8-apache         
