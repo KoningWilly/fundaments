@@ -1,23 +1,23 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: wordpress-mysql
+  name: wordpress-mysql2
   labels:
-    app: wordpress
+    app: wordpress2
 spec:
   ports:
     - port: 3307
   selector:
-    app: wordpress
-    tier: mysql
+    app: wordpress2
+    tier: mysql2
   clusterIP: None
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: mysql-pv-claim
+  name: mysql-pv-claim2
   labels:
-    app: wordpress
+    app: wordpress2
   annotations: 
     volume.beta.kubernetes.io/storage-class: longhorn
 spec:
@@ -30,25 +30,25 @@ spec:
 apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
 kind: Deployment
 metadata:
-  name: wordpress-mysql
+  name: wordpress-mysql2
   labels:
-    app: wordpress
+    app: wordpress2
 spec:
   selector:
     matchLabels:
-      app: wordpress
-      tier: mysql
+      app: wordpress2
+      tier: mysql2
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app: wordpress
-        tier: mysql
+        app: wordpress2
+        tier: mysql2
     spec:
       containers:
       - image: mysql:5.6
-        name: mysql
+        name: mysql2
         env:
         - name: MYSQL_ROOT_PASSWORD
           valueFrom:
@@ -57,11 +57,11 @@ spec:
               key: password
         ports:
         - containerPort: 3307
-          name: mysql
+          name: mysql2
         volumeMounts:
-        - name: mysql-persistent-storage
-          mountPath: /var/lib/mysql
+        - name: mysql-persistent-storage2
+          mountPath: /var/lib/mysql2
       volumes:
-      - name: mysql-persistent-storage
+      - name: mysql-persistent-storage2
         persistentVolumeClaim:
-          claimName: mysql-pv-claim
+          claimName: mysql-pv-claim2
