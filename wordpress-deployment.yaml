@@ -6,7 +6,9 @@ metadata:
     app: wordpress
 spec:
   ports:
-    - port: 8080
+    - port: 80
+      targetPort: 80
+      nodePort: 30331
   selector:
     app: wordpress
     tier: frontend
@@ -19,7 +21,7 @@ metadata:
   labels:
     app: wordpress
   annotations:
-    volume.beta.kubernetes.io/storageClassName: longhorn
+    volume.beta.kubernetes.io/storage-class: longhorn
 spec:
   accessModes:
     - ReadWriteOnce
@@ -27,7 +29,7 @@ spec:
     requests:
       storage: 5Gi
 ---
-apiVersion: apps/v1
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
 kind: Deployment
 metadata:
   name: wordpress
@@ -63,8 +65,6 @@ spec:
         volumeMounts:
         - name: wordpress-persistent-storage
           mountPath: /var/www/html
-      nodeSelector: 
-          kubernetes.io/hostname: node4-virtual-machine
       volumes:
       - name: wordpress-persistent-storage
         persistentVolumeClaim:
